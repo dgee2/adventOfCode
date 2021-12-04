@@ -1,14 +1,22 @@
 #!/usr/bin/env node
-'use strict';
+const fs = require("fs")
+const inquirer = require("inquirer")
+const path = require("path")
 
-const { existsSync } = require("fs")
-const yargs = require("yargs")
-
-const options = yargs.usage("Usage -d <number> -p <number>")
-    .option("d", { alias: "day", describe: "Advent Day", type: "number", demandOption: true })
-    .option("p", { alias: "part", describe: "Problem part", type: "number", demandOption: true })
-    .argv
-
-if (existsSync(`./problems/day${options.day}/part${options.part}.js`)) {
-    require(`./problems/day${options.day}/part${options.part}`)
+function getDays() {
+    return fs.readdirSync("./problems").map((d) => d.substring(3));
 }
+function getPartChoicesForDay(answers) {
+    return fs.readdirSync(`./problems/day${answers.day}`)
+        .filter(f => path.extname(f) === '.js')
+        .filter(f => f.startsWith("part"))
+        .map(f => path.basename(f, path.extname(f)).substring(4));
+}
+function executeProblem(answers) {
+    return require(`./problems/day${answers.day}/part${answers.part}`);
+}
+
+inquirer.prompt([
+    { name: "day", type: "list", message: "Which day?", choices: getDays },
+    { name: "part", type: "list", message: "Which part?", choices: getPartChoicesForDay }
+]).then(executeProblem)

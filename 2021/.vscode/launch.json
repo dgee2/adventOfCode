@@ -12,12 +12,7 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}\\index.js",
-            "args": [
-                "-d",
-                "3",
-                "-p",
-                "2"
-            ]
+            "console": "integratedTerminal"
         }
     ]
 }
