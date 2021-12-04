@@ -6,14 +6,14 @@ const path = require("path")
 function getDays() {
     return fs.readdirSync("./problems").map((d) => d.substring(3));
 }
-function getPartChoicesForDay(answers) {
-    return fs.readdirSync(`./problems/day${answers.day}`)
+function getPartChoicesForDay({ day }) {
+    return fs.readdirSync(`./problems/day${day}`)
         .filter(f => path.extname(f) === '.js')
         .filter(f => f.startsWith("part"))
         .map(f => path.basename(f, path.extname(f)).substring(4));
 }
-function executeProblem(answers) {
-    return require(`./problems/day${answers.day}/part${answers.part}`);
+function executeProblem({ day, part }) {
+    return require(`./problems/day${day}/part${part}`);
 }
 
 inquirer.prompt([
