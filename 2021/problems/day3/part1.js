@@ -1,4 +1,5 @@
 const { loadPuzzleInput } = require("../../helpers")
+const { mostCommonBit } = require("./helpers")
 
 const puzzleInput = loadPuzzleInput(__dirname)
 // .map(parseMovement)
@@ -11,12 +12,7 @@ let gammaRate = ''
 let epsilonRate = ''
 
 for (let index = 0; index < puzzleWidth; index++) {
-    const onesCount = puzzleInput
-        .map((s) => s[index])
-        .filter((c) => c === '1')
-        .length
-
-    if (onesCount > (puzzleLength / 2)) {
+    if (mostCommonBit(puzzleInput, index)) {
         gammaRate += 1
         epsilonRate += 0
     }
