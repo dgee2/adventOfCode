@@ -1,7 +1,7 @@
-const { loadPuzzleInput } = require("../../helpers")
+const { loadPuzzleInputAsRows } = require("../../helpers")
 const { mostCommonBit, leastCommonBit } = require("./helpers")
 
-let puzzleInput = loadPuzzleInput(__dirname)
+let puzzleInput = loadPuzzleInputAsRows(__dirname)
 const puzzleWidth = puzzleInput[0].length
 
 

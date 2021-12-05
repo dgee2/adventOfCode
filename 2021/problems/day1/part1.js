@@ -1,6 +1,6 @@
-const { loadPuzzleInput } = require("../../helpers")
+const { loadPuzzleInputAsRows } = require("../../helpers")
 
-const puzzleInput = loadPuzzleInput(__dirname)
+const puzzleInput = loadPuzzleInputAsRows(__dirname)
     .map(Number)
     .filter((value, i, a) => i - 1 >= 0 && a[i - 1] < value)
     .length

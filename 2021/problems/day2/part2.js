@@ -1,6 +1,6 @@
-const { loadPuzzleInput } = require("../../helpers")
+const { loadPuzzleInputAsRows } = require("../../helpers")
 
-const puzzleInput = loadPuzzleInput(__dirname)
+const puzzleInput = loadPuzzleInputAsRows(__dirname)
     .map(parseMovement)
     .reduce(applyMovement, { position: 0, depth: 0, angle: 0 })
 

@@ -1,6 +1,6 @@
-const { loadPuzzleInput } = require("../../helpers")
+const { loadPuzzleInputAsRows } = require("../../helpers")
 
-const puzzleInput = loadPuzzleInput(__dirname)
+const puzzleInput = loadPuzzleInputAsRows(__dirname)
     .map(Number)
     .map(createSlidingWindow)
     .filter((v) => v !== null)
