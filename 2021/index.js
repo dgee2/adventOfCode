@@ -21,8 +21,7 @@ function executeProblem({ day, part, example }) {
 }
 
 function hasExample({ day }) {
-    const test = fs.existsSync(`./problems/day${day}/examplePuzzleInput.txt`);
-    return test;
+    return fs.existsSync(`./problems/day${day}/examplePuzzleInput.txt`);
 }
 
 inquirer.prompt([
