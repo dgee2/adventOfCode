@@ -1,21 +1,20 @@
 const { loadPuzzleInput } = require('../../helpers');
 let puzzleInput = loadPuzzleInput(__dirname).split(',').map(Number);
 
-console.log(puzzleInput)
-/**
- * 
- * @param {Number[]} puzzleInput 
- */
-function incrementDay(input) {
-    return input.flatMap(x => {
-        if (x === 0) {
-            return [6, 8]
-        } else {
-            return x - 1
-        }
-    })
+const daysToBreed = 256
+
+let days = puzzleInput.reduce((p, c) => {
+    p[c] = p[c] ? p[c] + 1 : 1;
+    return p;
+}, {})
+
+for (let i = 0; i < daysToBreed; i++) {
+    if (days[i]) {
+        days[i + 7] = days[i] + (days[i + 7] || 0);
+        days[i + 9] = days[i] + (days[i + 9] || 0);
+    }
 }
-for (let i = 0; i < 256; i++) {
-    puzzleInput = incrementDay(puzzleInput)
-}
-console.log(puzzleInput.length)
+
+const dayKeys = Object.keys(days).map(Number)
+
+console.log(dayKeys.filter((x) => x >= daysToBreed).map((x) => days[x]).reduce((p, c) => p + c))
